@@ -194,11 +194,11 @@ const N8nFlowCTA = () => {
             {/* Central Processing Node */}
             <div className={styles.centralNode}>
               <div className={styles.processingIcon}>
-                <Icon icon="mdi:loading" width="40" height="40" />
+                {/* <Icon icon="mdi:loading" width="40" height="40" /> */}
               </div>
               <div className={styles.n8nBranding}>
                 <div className={styles.lightningIcon}>
-                  <Icon icon="mdi:lightning-bolt" width="16" height="16" />
+                  <Icon icon="mdi:lightning-bolt" width="24" height="24" />
                 </div>
                 <div className={styles.brandText}>
                   <div className={styles.brandName}>n8n</div>
