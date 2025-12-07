@@ -1,0 +1,632 @@
+
+@use "../../../styles/variables" as *;
+
+// Modern Footer Design
+.footer {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(135deg, #0b0d16 100%, #1a1b2e 75%, #16213e 50%, #1a1b2e 25%, #0b0d16 0%);
+  color: #e8ecf4;
+  overflow: hidden;
+}
+
+// Animated background elements
+.animatedBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floatingOrbs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 191, 255, 0.05));
+  filter: blur(40px);
+  animation: floatOrb 20s ease-in-out infinite;
+
+  &.orb1 {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+  }
+
+  &.orb2 {
+    width: 200px;
+    height: 200px;
+    top: 60%;
+    right: 10%;
+    animation-delay: -7s;
+  }
+
+  &.orb3 {
+    width: 250px;
+    height: 250px;
+    bottom: 20%;
+    left: 15%;
+    animation-delay: -14s;
+  }
+
+  &.orb4 {
+    width: 180px;
+    height: 180px;
+    top: 30%;
+    right: 30%;
+    animation-delay: -10s;
+  }
+}
+
+.geometricShapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.shape {
+  position: absolute;
+  opacity: 0.1;
+  animation: geometricFloat 15s ease-in-out infinite;
+
+  &.triangle {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 35px solid rgba(0, 255, 255, 0.3);
+    top: 20%;
+    left: 80%;
+    animation-delay: -5s;
+  }
+
+  &.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 191, 255, 0.2);
+    top: 70%;
+    left: 10%;
+    animation-delay: -8s;
+  }
+
+  &.square {
+    width: 30px;
+    height: 30px;
+    background: rgba(0, 128, 255, 0.2);
+    transform: rotate(45deg);
+    top: 40%;
+    right: 20%;
+    animation-delay: -12s;
+  }
+}
+
+.gridPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(93, 168, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(93, 168, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.3;
+  animation: gridMove 20s linear infinite;
+}
+
+.particleField {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(0, 255, 255, 0.4);
+  border-radius: 50%;
+  animation: particleFloat 12s ease-in-out infinite;
+
+  &.particle1 {
+    top: 15%;
+    left: 20%;
+    animation-delay: 0s;
+  }
+
+  &.particle2 {
+    top: 25%;
+    right: 15%;
+    animation-delay: -2s;
+  }
+
+  &.particle3 {
+    top: 45%;
+    left: 5%;
+    animation-delay: -4s;
+  }
+
+  &.particle4 {
+    top: 65%;
+    right: 25%;
+    animation-delay: -6s;
+  }
+
+  &.particle5 {
+    top: 80%;
+    left: 30%;
+    animation-delay: -8s;
+  }
+
+  &.particle6 {
+    top: 35%;
+    right: 5%;
+    animation-delay: -10s;
+  }
+}
+
+.ragText {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 192px;
+  font-weight: 900;
+  color: rgba(0, 212, 255, 0.15);
+  letter-spacing: -0.02em;
+  z-index: 2;
+  animation: ragGlitch 6s ease-in-out infinite;
+  text-shadow: 
+    0 0 20px rgba(0, 212, 255, 0.1),
+    0 0 40px rgba(0, 212, 255, 0.05);
+  user-select: none;
+  pointer-events: none;
+}
+
+@keyframes ragGlitch {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    filter: blur(0px);
+    opacity: 0.15;
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(1.02) translateX(2px);
+    filter: blur(0.5px);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.98) translateX(-1px);
+    filter: blur(0.2px);
+    opacity: 0.18;
+  }
+  75% {
+    transform: translate(-50%, -50%) scale(1.01) translateX(1px);
+    filter: blur(0.3px);
+    opacity: 0.16;
+  }
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) scale(1.05);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-10px) translateX(-5px) scale(1.1);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translateY(-25px) translateX(15px) scale(1.02);
+    opacity: 0.35;
+  }
+}
+
+@keyframes geometricFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.1;
+  }
+  33% {
+    transform: translateY(-15px) rotate(120deg);
+    opacity: 0.15;
+  }
+  66% {
+    transform: translateY(10px) rotate(240deg);
+    opacity: 0.12;
+  }
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translateY(-15px) translateX(10px) scale(1.2);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-25px) translateX(-5px) scale(0.8);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translateY(-10px) translateX(15px) scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+// Container
+.container {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px 40px;
+}
+
+// Main Content
+.mainContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+// Brand Section
+.brandSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logoContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.brandLogo {
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(0, 255, 255, 0.3));
+  transition: all 0.3s ease;
+}
+
+
+.brandDescription {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  font-size: 15.2px;
+  margin: 0;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.socialLink {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+}
+
+.socialLink:hover {
+  color: #ffffff;
+  background: rgba(0, 255, 255, 0.1);
+  border-color: rgba(0, 255, 255, 0.3);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 255, 255, 0.2);
+}
+
+.navSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.sectionTitle {
+  font-size: 17.6px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: linear-gradient(90deg, #00ffff 0%, #00bfff 50%, #0080ff 100%);
+  border-radius: 1px;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.navLink {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 14.4px;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 4px 0;
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #00ffff 0%, #00bfff 50%, #0080ff 100%);
+  transition: width 0.3s ease;
+}
+
+.navLink:hover {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.navLink:hover::before {
+  width: 100%;
+}
+
+// Newsletter Section
+.newsletterSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.newsletterDescription {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14.4px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.newsletterForm {
+  position: relative;
+}
+
+.inputGroup {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 20, 40, 0.6);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 16px;
+  padding: 4px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.inputGroup:focus-within {
+  border-color: rgba(0, 212, 255, 0.6);
+  box-shadow: 0 0 0 1px rgba(0, 212, 255, 0.4);
+  background: rgba(0, 20, 40, 0.8);
+}
+
+.emailInput {
+  flex: 1;
+  height: 48px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 14.4px;
+  padding: 0 16px;
+}
+
+.emailInput::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.subscribeBtn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #00d4ff 0%, #0096b4 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-right: 4px;
+  box-shadow: 0 2px 8px rgba(0, 212, 255, 0.3);
+}
+
+.subscribeBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.5);
+  background: linear-gradient(135deg, #00e4ff 0%, #00a8cc 100%);
+}
+
+
+// Bottom Section
+.bottomSection {
+  padding-top: 32px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 255, 255, 0.3) 20%, 
+    rgba(0, 191, 255, 0.4) 50%, 
+    rgba(0, 128, 255, 0.3) 80%, 
+    transparent 100%
+  );
+  margin-bottom: 24px;
+}
+
+.bottomContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.copyright {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14.4px;
+}
+
+.legalLinks {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.legalLink {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-size: 14.4px;
+  transition: color 0.3s ease;
+}
+
+.legalLink:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.separator {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 12.8px;
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .mainContent {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  
+  
+  .newsletterSection {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 60px 20px 32px;
+  }
+  
+  .mainContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 10px;
+  }
+  
+  
+  .bottomContent {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  
+  .legalLinks {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .brandSection {
+    text-align: center;
+  }
+  
+  .socialLinks {
+    justify-content: center;
+  }
+  
+  .navSection {
+    text-align: center;
+  }
+  
+  .sectionTitle::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .ragText {
+    font-size: 128px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 48px 16px 24px;
+  }
+  
+  .mainContent {
+    gap: 32px;
+  }
+  
+  
+  .legalLinks {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .separator {
+    display: none;
+  }
+  
+  .ragText {
+    font-size: 96px;
+  }
+}
+
+
+

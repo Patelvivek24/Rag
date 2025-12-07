@@ -1,0 +1,105 @@
+// Theme Colors
+$color-bg-primary: #0b0d16; // dark space navy
+$color-bg-secondary: #1a1b2e; // secondary dark blue
+$color-bg-tertiary: #16213e; // tertiary dark blue
+$color-bg-quaternary: #0a0c14; // darkest blue
+
+$color-text-primary: #ffffff; // main text
+$color-text-secondary: #9ca3af; // muted text
+$color-text-light: #e6e6e6; // navbar, footer links
+$color-text-muted: rgba(255, 255, 255, 0.7); // semi-transparent white
+$color-text-accent: #e8ecf4; // light accent text
+
+$color-accent-blue: #5da8ff; // brighter hero glow
+$color-accent-purple: #a66bff; // vivid purple to match screenshot
+$color-accent-cyan: #00ffff; // bright cyan
+$color-accent-cyan-dark: #00bfff; // darker cyan
+$color-accent-cyan-darker: #0080ff; // darkest cyan
+$color-accent-pink: #ff6b9d; // pink accent
+$color-accent-green: #22c55e; // success green
+$color-accent-teal: #40e0d0; // teal accent
+
+// Background Gradients
+$gradient-bg-primary: linear-gradient(
+  135deg,
+  $color-bg-primary 0%,
+  $color-bg-secondary 25%,
+  $color-bg-tertiary 50%,
+  $color-bg-secondary 75%,
+  $color-bg-primary 100%
+);
+
+$gradient-bg-reverse: linear-gradient(
+  135deg,
+  $color-bg-primary 100%,
+  $color-bg-secondary 75%,
+  $color-bg-tertiary 50%,
+  $color-bg-secondary 25%,
+  $color-bg-primary 0%
+);
+
+$gradient-bg-features: linear-gradient(
+  135deg,
+  $color-bg-primary 0%,
+  $color-bg-secondary 15%,
+  $color-bg-tertiary 35%,
+  $color-bg-secondary 55%,
+  $color-bg-primary 75%,
+  $color-bg-quaternary 100%
+);
+
+// Accent Gradients
+$gradient-primary: linear-gradient(90deg, $color-accent-blue, $color-accent-purple);
+$gradient-cyan: linear-gradient(
+  90deg,
+  $color-accent-cyan 0%,
+  $color-accent-cyan-dark 50%,
+  $color-accent-cyan-darker 100%
+);
+$gradient-text: linear-gradient(135deg, $color-accent-blue, $color-accent-purple);
+$gradient-text-extended: linear-gradient(
+  135deg,
+  $color-accent-blue 0%,
+  $color-accent-purple 50%,
+  $color-accent-pink 100%
+);
+
+// Muted CTA gradient for buttons (toned blue → purple with mid stop for depth)
+$gradient-cta: linear-gradient(
+  135deg,
+  mix($color-accent-blue, $color-bg-primary, 55%) 0%,
+  mix(mix($color-accent-blue, $color-accent-purple, 50%), $color-bg-primary, 40%) 52%,
+  mix($color-accent-purple, $color-bg-primary, 50%) 100%
+);
+
+// Glass morphism backgrounds
+$glass-bg-light: linear-gradient(
+  135deg,
+  rgba(255, 255, 255, 0.1) 0%,
+  rgba(255, 255, 255, 0.05) 100%
+);
+
+$glass-bg-medium: linear-gradient(
+  135deg,
+  rgba(255, 255, 255, 0.08) 0%,
+  rgba(255, 255, 255, 0.03) 100%
+);
+
+$glass-bg-dark: linear-gradient(135deg, rgba(20, 40, 60, 0.8) 0%, rgba(15, 35, 55, 0.9) 100%);
+
+// Border colors
+$border-light: rgba(255, 255, 255, 0.1);
+$border-medium: rgba(255, 255, 255, 0.15);
+$border-strong: rgba(255, 255, 255, 0.2);
+$border-accent: rgba(93, 168, 255, 0.3);
+$border-cyan: rgba(64, 224, 208, 0.2);
+
+// Shadow colors
+$shadow-primary: rgba(93, 168, 255, 0.3);
+$shadow-cyan: rgba(0, 255, 255, 0.4);
+$shadow-dark: rgba(0, 0, 0, 0.4);
+
+// Misc
+$radius: 12px;
+$radius-large: 20px;
+$radius-xl: 24px;

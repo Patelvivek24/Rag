@@ -1,0 +1,599 @@
+@use "../../../../styles/variables" as *;
+
+.overview {
+  position: relative;
+  padding: 96px 0 64px 0;
+  background: linear-gradient(135deg, #0b0d16 100%, #1a1b2e 75%, #16213e 50%, #1a1b2e 25%, #0b0d16 0%);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+
+
+
+// Early Access Card Styles - Modernized
+.wishlistCard {
+  position: relative;
+  max-width: 700px;
+  margin: 40px auto 0;
+  animation: wishlistSlideUp 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+  animation-delay: 0.8s;
+}
+
+.wishlistGlow {
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  right: -30px;
+  bottom: -30px;
+  background: radial-gradient(circle at center, 
+    rgba(0, 255, 255, 0.12) 0%, 
+    rgba(0, 191, 255, 0.08) 30%, 
+    rgba(0, 128, 255, 0.04) 60%,
+    transparent 80%
+  );
+  border-radius: 40px;
+  filter: blur(30px);
+  animation: glowPulse 6s ease-in-out infinite;
+  z-index: -1;
+}
+
+.wishlistContent {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 32px 150px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  // Abstract lines decoration
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(45deg, transparent 48%, rgba(0, 255, 255, 0.1) 49%, rgba(0, 255, 255, 0.1) 51%, transparent 52%),
+      linear-gradient(-45deg, transparent 48%, rgba(0, 191, 255, 0.08) 49%, rgba(0, 191, 255, 0.08) 51%, transparent 52%);
+    background-size: 20px 20px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // Shimmer effect
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.1), 
+      transparent
+    );
+    transition: left 0.8s ease;
+    z-index: 2;
+  }
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+      0 30px 60px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(0, 255, 255, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(0, 255, 255, 0.3);
+
+    &::after {
+      left: 100%;
+    }
+  }
+}
+
+.wishlistHeader {
+  text-align: center;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 3;
+}
+
+.wishlistIconContainer {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 24px;
+  margin-top: 8px;
+}
+
+.wishlistIcon {
+  font-size: 28px;
+  animation: iconFloat 4s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+}
+
+.iconRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(0, 255, 255, 0.4);
+  border-radius: 50%;
+  animation: ringRotate 10s linear infinite;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.iconRing2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  border-radius: 50%;
+  animation: ringRotate 15s linear infinite reverse;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.15);
+}
+
+.wishlistTitle {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.titleGradient {
+  background: linear-gradient(135deg, #00ffff 0%, #00bfff 50%, #0080ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: titleGlow 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.3));
+}
+
+.wishlistSubtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
+.wishlistForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 3;
+}
+
+.inputGroup {
+  display: flex;
+  gap: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.08) 0%, 
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 40px;
+  padding: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  &.focused {
+    border-color: rgba(0, 255, 255, 0.4);
+    box-shadow: 
+      0 0 0 3px rgba(0, 255, 255, 0.1),
+      0 8px 20px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.12) 0%, 
+      rgba(255, 255, 255, 0.06) 100%
+    );
+  }
+}
+
+.emailInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 10px 12px;
+  font-size: 16px;
+  outline: none;
+  font-weight: 400;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(90deg, #00ffff 0%, #00bfff 50%, #0080ff 100%);
+  color: #0a1a2e;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 10px 30px rgba(0, 255, 255, 0.4),
+    0 0 0 1px rgba(0, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  max-width: fit-content;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 15px 40px rgba(0, 255, 255, 0.5),
+      0 0 0 1px rgba(0, 255, 255, 0.4);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 
+      0 5px 15px rgba(0, 255, 255, 0.2),
+      0 0 0 1px rgba(0, 255, 255, 0.2);
+  }
+
+  &.active {
+    background: linear-gradient(90deg, #00e6e6 0%, #00a3cc 50%, #0066cc 100%);
+  }
+}
+
+.buttonArrow {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submitButton:hover:not(:disabled) .buttonArrow {
+  transform: translateX(3px);
+}
+
+.loadingSpinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(10, 26, 46, 0.3);
+  border-top: 2px solid #0a1a2e;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.wishlistNote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin-top: 12px;
+  position: relative;
+  z-index: 3;
+}
+
+.privacyIcon {
+  font-size: 16px;
+  animation: privacyPulse 3s ease-in-out infinite;
+}
+
+// Enhanced Success Message - Modernized
+.successMessage {
+  text-align: center;
+  animation: successFadeIn 0.6s ease-out;
+  position: relative;
+  z-index: 3;
+}
+
+.successIconContainer {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.successIcon {
+  font-size: 36px;
+  animation: successBounce 0.8s ease-out;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 15px rgba(34, 197, 94, 0.4));
+}
+
+.successRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border: 3px solid rgba(34, 197, 94, 0.4);
+  border-radius: 50%;
+  animation: successRingExpand 1s ease-out;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+}
+
+.successMessage h4 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.successMessage p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.successBadge {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, 
+    rgba(34, 197, 94, 0.2) 0%, 
+    rgba(34, 197, 94, 0.1) 100%
+  );
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #22c55e;
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  animation: badgeGlow 2s ease-in-out infinite;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+}
+
+// Animations
+@keyframes wishlistSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(5deg);
+  }
+}
+
+@keyframes ringRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    filter: brightness(1) drop-shadow(0 0 20px rgba(0, 255, 255, 0.3));
+  }
+  50% {
+    filter: brightness(1.2) drop-shadow(0 0 30px rgba(0, 255, 255, 0.5));
+  }
+}
+
+@keyframes privacyPulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes successFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes successBounce {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes successRingExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes badgeGlow {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 8px 20px rgba(34, 197, 94, 0.4);
+    transform: scale(1.02);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .overview {
+    padding: 64px 0 48px 0;
+  }
+
+  .content {
+    padding: 0 16px;
+  }
+
+
+  .wishlistCard {
+    margin: 24px auto 0;
+    max-width: 400px;
+  }
+
+  .wishlistContent {
+    padding: 24px;
+  }
+
+  .wishlistTitle {
+    font-size: 20px;
+  }
+
+  .wishlistSubtitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wishlistCard {
+    margin: 16px auto 0;
+    max-width: 350px;
+  }
+
+  .wishlistContent {
+    padding: 20px;
+  }
+
+  .wishlistTitle {
+    font-size: 18px;
+  }
+
+  .wishlistSubtitle {
+    font-size: 13px;
+  }
+
+  .emailInput {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+
+  .submitButton {
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+
+  .successMessage h4 {
+    font-size: 18px;
+  }
+
+  .successMessage p {
+    font-size: 14px;
+  }
+}

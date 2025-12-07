@@ -1,0 +1,531 @@
+@use "../../../styles/variables" as *;
+
+.contactPage {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 32px 0;
+}
+
+// Animated background elements
+.backgroundElements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floatingOrb {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, 
+    rgba(93, 168, 255, 0.1) 0%, 
+    rgba(166, 107, 255, 0.05) 50%, 
+    transparent 100%
+  );
+  filter: blur(40px);
+  animation: floatOrb 20s ease-in-out infinite;
+
+  &:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  &:nth-child(2) {
+    top: 60%;
+    right: 15%;
+    animation-delay: 7s;
+  }
+
+  &:nth-child(3) {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 14s;
+  }
+}
+
+// Container
+.container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+// Header Section
+.header {
+  text-align: center;
+  margin-bottom: 64px;
+  padding-top: 72px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  padding: 6.4px 19.2px;
+  margin-bottom: 24px;
+  animation: badgeFloat 3s ease-in-out infinite;
+}
+
+
+.title {
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.subtitle {
+  font-size: clamp(16px, 2vw, 19.2px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.highlight {
+  background: linear-gradient(90deg, $color-accent-blue 0%, $color-accent-cyan 50%, $color-accent-cyan-darker 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+// Content Layout
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 48px;
+  margin-bottom: 32px;
+}
+
+// Contact Information Cards
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.infoCard {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.08) 0%, 
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.05), 
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+      0 30px 60px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(93, 168, 255, 0.3);
+
+    &::before {
+      left: 100%;
+    }
+  }
+}
+
+.infoIcon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+.infoCard h3 {
+  font-size: 19.2px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.infoCard p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.infoCard span {
+  font-size: 13.6px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+// Form Section
+.formSection {
+  position: relative;
+}
+
+.formCard {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.08) 0%, 
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.formGlow {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: radial-gradient(circle at center, 
+    rgba(93, 168, 255, 0.15) 0%, 
+    rgba(166, 107, 255, 0.1) 30%, 
+    transparent 70%
+  );
+  border-radius: 30px;
+  filter: blur(20px);
+  animation: glowPulse 4s ease-in-out infinite;
+  z-index: -1;
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.formHeader h2 {
+  font-size: 28.8px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.formHeader p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+}
+
+// Form Styles
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputGroup label {
+  font-size: 14.4px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 4px;
+}
+
+.input,
+.textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12.8px 16px;
+  color: #fff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  outline: none;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &:focus {
+    border-color: rgba(93, 168, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(93, 168, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+// Success Card
+.successCard {
+  background: linear-gradient(135deg, 
+    rgba(34, 197, 94, 0.1) 0%, 
+    rgba(34, 197, 94, 0.05) 100%
+  );
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 20px;
+  padding: 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: successFadeIn 0.6s ease-out;
+}
+
+.successGlow {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: radial-gradient(circle at center, 
+    rgba(34, 197, 94, 0.15) 0%, 
+    transparent 70%
+  );
+  border-radius: 30px;
+  filter: blur(20px);
+  z-index: -1;
+}
+
+.successIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  animation: successBounce 0.8s ease-out;
+}
+
+.successCard h2 {
+  font-size: 28.8px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.successCard p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.successBadge {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1));
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14.4px;
+  font-weight: 600;
+  animation: badgeGlow 2s ease-in-out infinite;
+}
+
+
+// Animations
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes badgeFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes successFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes successBounce {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes badgeGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+  }
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .contactInfo {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .infoCard {
+    flex: 1;
+    min-width: 250px;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contactPage {
+    padding: 24px 0;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .header {
+    margin-bottom: 48px;
+  }
+
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .contactInfo {
+    flex-direction: column;
+  }
+
+  .infoCard {
+    max-width: none;
+  }
+
+  .formCard {
+    padding: 24px;
+  }
+
+  .faqGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .contactPage {
+    padding: 16px 0;
+  }
+
+  .header {
+    margin-bottom: 32px;
+  }
+
+  // .title {
+  //   font-size: clamp(28.8px, 10vw, 40px);
+  // }
+
+  .formCard {
+    padding: 19.2px;
+  }
+
+  .formHeader h2 {
+    font-size: 24px;
+  }
+
+}

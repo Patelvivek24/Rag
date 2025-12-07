@@ -1,0 +1,528 @@
+@use "../../../../styles/variables" as *;
+
+.faqSection {
+  position: relative;
+  padding: 96px 0;
+  background: linear-gradient(135deg, #0b0d16 100%, #1a1b2e 75%, #16213e 50%, #1a1b2e 25%, #0b0d16 0%);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+// Animated background elements
+.animatedBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.floatingOrbs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 191, 255, 0.05));
+  filter: blur(40px);
+  animation: floatOrb 20s ease-in-out infinite;
+
+  &.orb1 {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+  }
+
+  &.orb2 {
+    width: 200px;
+    height: 200px;
+    top: 60%;
+    right: 10%;
+    animation-delay: -7s;
+  }
+
+  &.orb3 {
+    width: 250px;
+    height: 250px;
+    bottom: 20%;
+    left: 15%;
+    animation-delay: -14s;
+  }
+
+  &.orb4 {
+    width: 180px;
+    height: 180px;
+    top: 30%;
+    right: 30%;
+    animation-delay: -10s;
+  }
+}
+
+.geometricShapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.shape {
+  position: absolute;
+  opacity: 0.1;
+  animation: geometricFloat 15s ease-in-out infinite;
+
+  &.triangle {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 35px solid rgba(0, 255, 255, 0.3);
+    top: 20%;
+    left: 80%;
+    animation-delay: -5s;
+  }
+
+  &.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 191, 255, 0.2);
+    top: 70%;
+    left: 10%;
+    animation-delay: -8s;
+  }
+
+  &.square {
+    width: 30px;
+    height: 30px;
+    background: rgba(0, 128, 255, 0.2);
+    transform: rotate(45deg);
+    top: 40%;
+    right: 20%;
+    animation-delay: -12s;
+  }
+}
+
+.gridPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(93, 168, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(93, 168, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.3;
+  animation: gridMove 20s linear infinite;
+}
+
+.particleField {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(0, 255, 255, 0.4);
+  border-radius: 50%;
+  animation: particleFloat 12s ease-in-out infinite;
+
+  &.particle1 {
+    top: 15%;
+    left: 20%;
+    animation-delay: 0s;
+  }
+
+  &.particle2 {
+    top: 25%;
+    right: 15%;
+    animation-delay: -2s;
+  }
+
+  &.particle3 {
+    top: 45%;
+    left: 5%;
+    animation-delay: -4s;
+  }
+
+  &.particle4 {
+    top: 65%;
+    right: 25%;
+    animation-delay: -6s;
+  }
+
+  &.particle5 {
+    top: 80%;
+    left: 30%;
+    animation-delay: -8s;
+  }
+
+  &.particle6 {
+    top: 35%;
+    right: 5%;
+    animation-delay: -10s;
+  }
+}
+
+// Container
+.container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+// Main Layout
+.faqLayout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 64px;
+  align-items: start;
+}
+
+// Left Panel - Introduction
+.leftPanel {
+  position: relative;
+  z-index: 2;
+}
+
+.introContent {
+  position: sticky;
+  top: 32px;
+}
+
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(90deg, #00ffff 0%, #00bfff 50%, #0080ff 100%);
+  color: #0a1a2e;
+  text-decoration: none;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 10px 30px rgba(0, 255, 255, 0.4),
+    0 0 0 1px rgba(0, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  max-width: fit-content;
+  z-index: 2;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 15px 40px rgba(0, 255, 255, 0.5),
+      0 0 0 1px rgba(0, 255, 255, 0.4);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  .buttonIcon {
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+// Right Panel - FAQ Items
+.rightPanel {
+  position: relative;
+  z-index: 2;
+}
+
+.faqList {
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faqItem {
+  position: relative;
+  background: linear-gradient(135deg, 
+    rgba(20, 40, 60, 0.8) 0%, 
+    rgba(15, 35, 55, 0.9) 100%
+  );
+  border-radius: 12px;
+  border: 1px solid rgba(64, 224, 208, 0.2);
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: rgba(64, 224, 208, 0.4);
+    box-shadow: 0 4px 20px rgba(64, 224, 208, 0.1);
+  }
+}
+
+.faqQuestion {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 24px 32px;
+  color: #fff;
+  font-size: 17.6px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &.expanded {
+    background: linear-gradient(135deg, 
+      rgba(20, 40, 60, 0.9) 0%, 
+      rgba(15, 35, 55, 1) 100%
+    );
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(64, 224, 208, 0.3) 50%,
+        rgba(64, 224, 208, 0.6) 100%
+      );
+      pointer-events: none;
+      border-radius: 0 12px 12px 0;
+    }
+  }
+}
+
+.questionText {
+  flex: 1;
+  margin-right: 16px;
+  line-height: 1.4;
+}
+
+.faqIcon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faqAnswer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  padding: 0 32px;
+
+  &.show {
+    max-height: 200px;
+    padding: 16px 32px;
+  }
+}
+
+.answerContent {
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 400;
+  }
+}
+
+.divider {
+  display: none;
+}
+
+
+
+// Animations
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) scale(1.05);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-10px) translateX(-5px) scale(1.1);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translateY(-25px) translateX(15px) scale(1.02);
+    opacity: 0.35;
+  }
+}
+
+@keyframes geometricFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.1;
+  }
+  33% {
+    transform: translateY(-15px) rotate(120deg);
+    opacity: 0.15;
+  }
+  66% {
+    transform: translateY(10px) rotate(240deg);
+    opacity: 0.12;
+  }
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translateY(-15px) translateX(10px) scale(1.2);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-25px) translateX(-5px) scale(0.8);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translateY(-10px) translateX(15px) scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+
+
+
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .faqLayout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .introContent {
+    position: static;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .faqSection {
+    padding: 64px 0;
+  }
+
+  .container {
+    padding: 0 24px;
+  }
+
+  .faqLayout {
+    gap: 40px;
+  }
+
+
+
+  .faqQuestion {
+    padding: 20px 24px;
+    font-size: 16px;
+  }
+
+  .faqAnswer {
+    padding: 0 24px;
+
+    &.show {
+      padding: 0 24px 20px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .faqSection {
+    padding: 48px 0;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .faqLayout {
+    gap: 32px;
+  }
+
+
+
+  .faqQuestion {
+    padding: 16px 20px;
+    font-size: 15.2px;
+  }
+
+  .faqAnswer {
+    padding: 0 20px;
+
+    &.show {
+      padding: 0 20px 16px;
+    }
+
+    .answerContent p {
+      font-size: 14.4px;
+    }
+  }
+
+  .faqList {
+    border-radius: 12px;
+  }
+}

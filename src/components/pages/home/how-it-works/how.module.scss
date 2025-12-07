@@ -1,0 +1,383 @@
+@use "../../../../styles/variables" as *;
+
+.howSection {
+  position: relative;
+  padding: 64px 0 80px;
+  overflow: hidden;
+  min-height: auto;
+  display: flex;
+  align-items: center;
+}
+
+// Animated background elements
+.backgroundElements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floatingOrb {
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(93, 168, 255, 0.08) 0%, rgba(166, 107, 255, 0.04) 50%, transparent 70%);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+  filter: blur(30px);
+}
+
+.floatingOrb2 {
+  position: absolute;
+  top: 60%;
+  right: 15%;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(166, 107, 255, 0.06) 0%, rgba(255, 107, 157, 0.03) 50%, transparent 70%);
+  border-radius: 50%;
+  animation: float 12s ease-in-out infinite reverse;
+  filter: blur(25px);
+}
+
+.floatingOrb3 {
+  position: absolute;
+  bottom: 20%;
+  left: 20%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(255, 107, 157, 0.05) 0%, rgba(93, 168, 255, 0.02) 50%, transparent 70%);
+  border-radius: 50%;
+  animation: float 10s ease-in-out infinite;
+  filter: blur(20px);
+}
+
+.gridPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(93, 168, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(93, 168, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+}
+
+.gradientOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(11, 13, 22, 0.3) 70%, rgba(11, 13, 22, 0.8) 100%);
+}
+
+// Animations
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+// Header section
+.headerSection {
+  text-align: center;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6.4px 19.2px;
+  background: linear-gradient(135deg, rgba(93, 168, 255, 0.15), rgba(166, 107, 255, 0.15));
+  border: 1px solid rgba(93, 168, 255, 0.3);
+  border-radius: 50px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.badgeText {
+  color: #5da8ff;
+  font-size: 12.8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+
+// Timeline container
+.timelineContainer {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 48px;
+}
+
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, transparent 0%, #5da8ff 20%, #a66bff 80%, transparent 100%);
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+}
+
+.timelineStep {
+  position: relative;
+  margin-bottom: 48px;
+  
+  &:nth-child(odd) .stepContent {
+    flex-direction: row;
+    text-align: left;
+    
+    .stepInfo {
+      margin-left: 40px;
+      margin-right: 0;
+    }
+  }
+  
+  &:nth-child(even) .stepContent {
+    flex-direction: row-reverse;
+    text-align: right;
+    
+    .stepInfo {
+      margin-right: 40px;
+      margin-left: 0;
+    }
+  }
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.stepContent {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #5da8ff, #a66bff);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px rgba(93, 168, 255, 0.5);
+    z-index: 3;
+  }
+}
+
+.stepNumber {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, rgba(93, 168, 255, 0.1), rgba(166, 107, 255, 0.1));
+  border: 2px solid rgba(93, 168, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5da8ff;
+  font-weight: 700;
+  font-size: 16px;
+  backdrop-filter: blur(10px);
+  z-index: 4;
+}
+
+.stepIcon {
+  width: 65px;
+  height: 65px;
+  background: linear-gradient(135deg, rgba(93, 168, 255, 0.15), rgba(166, 107, 255, 0.15));
+  border: 1px solid rgba(93, 168, 255, 0.3);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5da8ff;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(93, 168, 255, 0.2);
+  }
+}
+
+.stepInfo {
+  flex: 1;
+  max-width: 350px;
+}
+
+.stepTitle {
+  color: #e8ecf4;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #e8ecf4, rgba(232, 236, 244, 0.8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stepDescription {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  font-size: 14.4px;
+}
+
+.stepFeatures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6.4px;
+}
+
+.feature {
+  padding: 3.2px 9.6px;
+  background: rgba(93, 168, 255, 0.1);
+  border: 1px solid rgba(93, 168, 255, 0.2);
+  border-radius: 16px;
+  color: #5da8ff;
+  font-size: 12.8px;
+  font-weight: 500;
+}
+
+
+
+// Responsive design
+@media (max-width: 768px) {
+  .howSection {
+    padding: 48px 0 64px;
+  }
+  
+  .headerSection {
+    margin-bottom: 32px;
+  }
+  
+  
+  .timeline {
+    &::before {
+      left: 25px;
+    }
+  }
+  
+  .timelineStep {
+    margin-bottom: 40px;
+    
+    .stepContent {
+      flex-direction: column !important;
+      text-align: left !important;
+      margin-left: 50px;
+      
+      &::before {
+        left: -37px;
+      }
+    }
+    
+    .stepNumber {
+      left: -25px;
+      width: 45px;
+      height: 45px;
+      font-size: 14.4px;
+    }
+    
+    .stepInfo {
+      margin: 24px 0 0 15px !important;
+      max-width: none;
+    }
+  }
+  
+  .stepIcon {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .stepTitle {
+    font-size: 17.6px;
+  }
+  
+  .stepDescription {
+    font-size: 13.6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .howSection {
+    padding: 40px 0 48px;
+  }
+  
+  .headerSection {
+    margin-bottom: 24px;
+  }
+  
+  
+  .timelineStep {
+    margin-bottom: 32px;
+    
+    .stepContent {
+      margin-left: 40px;
+      
+      &::before {
+        left: -30px;
+      }
+    }
+    
+    .stepNumber {
+      left: -20px;
+      width: 40px;
+      height: 40px;
+      font-size: 12.8px;
+    }
+  }
+  
+  .stepIcon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .stepTitle {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .stepDescription {
+    font-size: 12.8px;
+    margin-bottom: 12.8px;
+  }
+  
+  .feature {
+    font-size: 12px;
+    padding: 2.4px 8px;
+  }
+}
+
+

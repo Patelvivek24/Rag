@@ -1,0 +1,330 @@
+@use "../../../../styles/variables" as *;
+
+.useCasesSection {
+  position: relative;
+  padding: 140px 0px 64px 0px;
+  overflow: hidden;
+  min-height: auto;
+}
+
+// Header Section
+.headerSection {
+  text-align: center;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.badge {
+  display: inline-block;
+  background: $glass-bg-light;
+  border: 1px solid $border-accent;
+  border-radius: 50px;
+  padding: 8px 24px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+
+  span {
+    color: $color-accent-blue;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+
+// Single Grid Layout
+.sectionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 24px;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Bottom row container for 3 equal cards
+.bottomRow {
+  grid-column: 1 / 3;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+// Section Card Positioning
+.sectionCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  position: relative;
+  background: $glass-bg-dark;
+  border: 1px solid $border-light;
+  border-radius: $radius-large;
+  backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  animation: cardFadeIn 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: $border-accent;
+    box-shadow:
+      0 12px 25px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(93, 168, 255, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    .sectionContent {
+      filter: blur(2px);
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, $border-medium, transparent);
+  }
+}
+.cardRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  .sectionHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sectionIcon {
+    width: 60px;
+    height: 60px;
+    border-radius: $radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    background: $glass-bg-dark;
+    border: 1px solid $border-medium;
+
+    i {
+      color: $color-text-primary;
+      font-size: 24px;
+    }
+  }
+
+  .sectionTitle {
+    color: $color-text-primary;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+    text-align: center;
+  }
+  .sectionDesc {
+    color: $color-text-muted;
+    font-size: 14.4px;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+    text-align: center;
+  }
+}
+
+.sectionContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  min-height: 160px;
+  background: $glass-bg-dark;
+  border: 1px solid $border-light;
+  border-radius: $radius-large;
+  margin: 5px;
+  z-index: -1;
+}
+
+.sectionGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: $radius-large;
+  opacity: 0;
+  filter: blur(40px);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.sectionCard:hover .sectionGlow {
+  opacity: 0.2;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: $color-text-primary;
+  font-size: 14.4px;
+  border-radius: 16px;
+  font-weight: 500;
+
+  i {
+    font-size: 32px;
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+
+  span {
+    font-size: 12.8px;
+    opacity: 0.9;
+  }
+}
+
+.sectionImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: $radius-large;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// Animations
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) rotate(120deg);
+  }
+  66% {
+    transform: translateY(10px) rotate(240deg);
+  }
+}
+
+@keyframes cardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .sectionsGrid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .bottomRow {
+    grid-template-columns: 1fr 1fr;
+    grid-row: 2;
+  }
+
+  .sectionCard {
+    &.top-left {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    &.top-right {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    &.bottom-left {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    &.bottom-center {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    &.bottom-right {
+      grid-column: 1 / 3;
+      grid-row: 2;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .useCasesSection {
+    padding: 40px 0;
+  }
+
+  .sectionsGrid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 16px;
+  }
+
+  .bottomRow {
+    grid-template-columns: 1fr;
+    grid-row: auto;
+    grid-column: 1;
+  }
+
+  .sectionCard {
+    &.top-left,
+    &.top-right,
+    &.bottom-left,
+    &.bottom-right,
+    &.bottom-center {
+      grid-column: 1;
+      grid-row: auto;
+      max-width: none;
+      margin: 0;
+    }
+  }
+
+  .dummyImage {
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionIcon {
+    width: 40px;
+    height: 40px;
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+
+  .sectionTitle {
+    font-size: 17.6px;
+  }
+
+  .sectionDesc {
+    font-size: 13.6px;
+  }
+}
