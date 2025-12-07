@@ -14,7 +14,7 @@ const UseCases = () => {
       image: "/image/jpg/Healthcare.jpeg",
     },
     {
-      id: "Legal ",
+      id: "Legal",
       icon: "mdi:shield-check",
       title: "Legal",
       desc: "Offer instant legal help by answering FAQs and guiding clients through documents, providing 24/7 support for easier access to justice.",
@@ -52,7 +52,6 @@ const UseCases = () => {
   ];
 
   const renderSectionContent = (section: any) => {
-    // Return dummy image for all sections
     return (
       <div className={styles.dummyImage}>
         <div className={styles.imagePlaceholder}>
@@ -60,7 +59,9 @@ const UseCases = () => {
             src={section.image}
             alt={section.title}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className={styles.sectionImage}
+            style={{ objectFit: 'cover' }}
           />
         </div>
       </div>
