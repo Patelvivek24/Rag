@@ -77,7 +77,7 @@ const FAQSection = () => {
                 Have more questions? Reach out to our sales team for assistance.
               </p>
               <div style={{ marginTop: '18px' }}>
-                <a href="#contact" className={styles.primaryButton}>
+                <a href="/contact" className={styles.primaryButton}>
                   <span>Contact sales</span>
                   <div className={styles.buttonIcon}>
                     <Icon icon="mdi:chevron-right" width="16" height="16" />

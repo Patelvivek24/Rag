@@ -1,0 +1,296 @@
+@use "../../../styles/variables" as *;
+
+// Overlay that blocks all interaction
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(11, 13, 22, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9998;
+  animation: fadeIn 0.3s ease-out;
+  cursor: not-allowed;
+  user-select: none;
+  pointer-events: auto;
+  
+  // Prevent any clicks from passing through
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+}
+
+// Cookie Popup Container
+.cookiePopup {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  max-width: 600px;
+  width: calc(100% - 32px);
+  animation: slideUp 0.5s ease-out;
+  pointer-events: auto;
+}
+
+// Cookie Content
+.cookieContent {
+  position: relative;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(93, 168, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+// Background Glow Effect
+.backgroundGlow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(93, 168, 255, 0.15) 0%,
+    rgba(166, 107, 255, 0.1) 30%,
+    transparent 70%
+  );
+  animation: pulseGlow 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+// Cookie Icon
+.cookieIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  color: #f59e0b;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+.iconGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+// Title
+.cookieTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #5da8ff 0%, #a66bff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Description
+.cookieDescription {
+  font-size: 15.2px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.policyLink {
+  color: #5da8ff;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+  margin-left: 4px;
+
+  &:hover {
+    color: #a66bff;
+  }
+}
+
+// Action Buttons
+.cookieActions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.acceptButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #5da8ff 0%, #a66bff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(93, 168, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.2), 
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(93, 168, 255, 0.4);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes floatIcon {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .cookiePopup {
+    bottom: 16px;
+    width: calc(100% - 16px);
+    max-width: none;
+  }
+
+  .cookieContent {
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .cookieIcon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 20px;
+  }
+
+  .cookieTitle {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .cookieDescription {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .acceptButton {
+    padding: 12px 24px;
+    font-size: 15px;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .cookieContent {
+    padding: 20px;
+  }
+
+  .cookieIcon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .cookieTitle {
+    font-size: 20px;
+  }
+
+  .cookieDescription {
+    font-size: 13.6px;
+  }
+}

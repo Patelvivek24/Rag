@@ -69,7 +69,7 @@ export default function Header() {
 
             <div className="d-lg-none mt-3 w-100">
               <Link
-                href={{ pathname: "/", hash: "get-started" }}
+                href="/contact"
                 className={"btn btn-gradient-primary rounded-pill w-100"}
                 onClick={() => setExpanded(false)}
               >
@@ -80,7 +80,7 @@ export default function Header() {
 
           <div className="d-none d-lg-flex align-items-center gap-2">
             <Link
-              href={{ pathname: "/", hash: "waitlist-sec" }}
+              href="/contact"
               className={styles.primaryButton}
             >
               <span>Join Waitlist</span>
