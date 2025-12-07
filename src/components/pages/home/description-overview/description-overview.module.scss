@@ -231,6 +231,19 @@
   }
 }
 
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  
+  // Ensure the button wrapper doesn't create unnecessary width
+  .submitButton {
+    width: auto;
+    margin: 0 auto;
+  }
+}
+
 .emailInput {
   flex: 1;
   background: transparent;

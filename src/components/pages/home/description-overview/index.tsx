@@ -162,9 +162,7 @@ const DescriptionOverview = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.9 }}
                 >
-                  <motion.div 
-                    className={styles.inputGroup}
-                  >
+                  <div className={styles.buttonWrapper}>
                     <Link
                       href="/contact"
                       className={styles.submitButton}
@@ -182,7 +180,7 @@ const DescriptionOverview = () => {
                         <Icon icon="mdi:arrow-right" width="16" height="16" />
                       </motion.div>
                     </Link>
-                  </motion.div>
+                  </div>
                   <motion.div 
                     className={styles.wishlistNote}
                     initial={{ opacity: 0 }}
