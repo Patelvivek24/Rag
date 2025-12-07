@@ -2,7 +2,7 @@
 
 .useCasesSection {
   position: relative;
-  padding: 140px 0px 64px 0px;
+  padding: 120px 0 80px;
   overflow: hidden;
   min-height: auto;
 }
@@ -39,11 +39,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
-  gap: 24px;
+  gap: 28px;
   margin-bottom: 40px;
   position: relative;
   z-index: 2;
-  max-width: 1200px;
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -54,7 +54,7 @@
   grid-row: 2;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 28px;
 }
 
 // Section Card Positioning
@@ -75,15 +75,12 @@
   transform: translateY(30px);
 
   &:hover {
-    transform: translateY(-4px) scale(1.01);
+    transform: translateY(-6px) scale(1.02);
     border-color: $border-accent;
     box-shadow:
-      0 12px 25px rgba(0, 0, 0, 0.5),
-      0 0 0 1px rgba(93, 168, 255, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    .sectionContent {
-      filter: blur(2px);
-    }
+      0 20px 40px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(93, 168, 255, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
 
   &::before {
@@ -100,47 +97,61 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 24px;
+  justify-content: flex-start;
+  padding: 28px 24px 20px;
+  flex: 1;
+  
   .sectionHeader {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin-bottom: 16px;
   }
 
   .sectionIcon {
-    width: 60px;
-    height: 60px;
-    border-radius: $radius;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
-    background: $glass-bg-dark;
-    border: 1px solid $border-medium;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(93, 168, 255, 0.15), rgba(166, 107, 255, 0.15));
+    border: 1px solid rgba(93, 168, 255, 0.3);
+    transition: all 0.3s ease;
 
-    i {
-      color: $color-text-primary;
-      font-size: 24px;
+    svg {
+      color: $color-accent-blue;
+      width: 28px;
+      height: 28px;
     }
   }
 
   .sectionTitle {
     color: $color-text-primary;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
     margin: 0 0 12px 0;
     line-height: 1.3;
     text-align: center;
+    letter-spacing: -0.3px;
   }
+  
   .sectionDesc {
     color: $color-text-muted;
-    font-size: 14.4px;
-    line-height: 1.5;
-    margin: 0 0 16px 0;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
     text-align: center;
+    max-width: 100%;
   }
+}
+
+.sectionCard:hover .sectionIcon {
+  transform: scale(1.1) rotate(5deg);
+  background: linear-gradient(135deg, rgba(93, 168, 255, 0.25), rgba(166, 107, 255, 0.25));
+  border-color: rgba(93, 168, 255, 0.5);
 }
 
 .sectionContent {
@@ -148,13 +159,13 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  z-index: 2;
-  min-height: 160px;
+  min-height: 200px;
   background: $glass-bg-dark;
   border: 1px solid $border-light;
   border-radius: $radius-large;
-  margin: 5px;
-  z-index: -1;
+  margin: 0;
+  padding: 8px;
+  overflow: hidden;
 }
 
 .sectionGlow {
@@ -175,17 +186,29 @@
   opacity: 0.2;
 }
 
+.dummyImage {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  min-height: 200px;
+  overflow: hidden;
+}
+
 .imagePlaceholder {
   width: 100%;
   height: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: $color-text-primary;
   font-size: 14.4px;
-  border-radius: 16px;
+  border-radius: 12px;
   font-weight: 500;
+  overflow: hidden;
+  min-height: 200px;
+  background: linear-gradient(135deg, rgba(93, 168, 255, 0.1), rgba(166, 107, 255, 0.1));
 
   i {
     font-size: 32px;
@@ -203,12 +226,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: $radius-large;
-  transition: transform 0.3s ease;
+  border-radius: 12px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease;
+  filter: brightness(0.85) contrast(1.05);
+}
 
-  &:hover {
-    transform: scale(1.05);
-  }
+.sectionCard:hover .sectionImage {
+  transform: scale(1.1);
+  filter: brightness(1) contrast(1.1);
 }
 
 // Animations
@@ -234,14 +259,20 @@
 
 // Responsive Design
 @media (max-width: 1024px) {
+  .useCasesSection {
+    padding: 100px 0 70px;
+  }
+
   .sectionsGrid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
+    gap: 24px;
   }
 
   .bottomRow {
     grid-template-columns: 1fr 1fr;
     grid-row: 2;
+    gap: 24px;
   }
 
   .sectionCard {
@@ -257,38 +288,66 @@
 
     &.bottom-left {
       grid-column: 1;
-      grid-row: 1;
+      grid-row: 2;
     }
 
     &.bottom-center {
       grid-column: 2;
-      grid-row: 1;
+      grid-row: 2;
     }
 
     &.bottom-right {
       grid-column: 1 / 3;
-      grid-row: 2;
-      max-width: 600px;
-      margin: 0 auto;
+      grid-row: 3;
+      max-width: 100%;
+      margin: 0;
     }
+  }
+
+  .cardRow {
+    padding: 24px 20px 18px;
+  }
+
+  .sectionIcon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 16px;
+
+    svg {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  .sectionTitle {
+    font-size: 20px;
+  }
+
+  .sectionDesc {
+    font-size: 14.5px;
   }
 }
 
 @media (max-width: 768px) {
   .useCasesSection {
-    padding: 40px 0;
+    padding: 80px 0 60px;
+  }
+
+  .headerSection {
+    margin-bottom: 40px;
   }
 
   .sectionsGrid {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    gap: 16px;
+    gap: 20px;
   }
 
   .bottomRow {
     grid-template-columns: 1fr;
     grid-row: auto;
     grid-column: 1;
+    gap: 20px;
   }
 
   .sectionCard {
@@ -305,26 +364,66 @@
   }
 
   .dummyImage {
-    height: 100px;
+    min-height: 180px;
+  }
+
+  .cardRow {
+    padding: 24px 20px 16px;
   }
 }
 
 @media (max-width: 480px) {
-  .sectionIcon {
-    width: 40px;
-    height: 40px;
+  .useCasesSection {
+    padding: 60px 0 50px;
+  }
 
-    i {
-      font-size: 16px;
+  .headerSection {
+    margin-bottom: 32px;
+  }
+
+  .badge {
+    padding: 6px 20px;
+    margin-bottom: 20px;
+
+    span {
+      font-size: 12px;
     }
   }
 
+  .sectionIcon {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 14px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
 
   .sectionTitle {
-    font-size: 17.6px;
+    font-size: 18px;
+    margin-bottom: 10px;
   }
 
   .sectionDesc {
-    font-size: 13.6px;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .cardRow {
+    padding: 20px 16px 14px;
+  }
+
+  .dummyImage {
+    min-height: 160px;
+  }
+
+  .sectionsGrid {
+    gap: 16px;
+  }
+
+  .bottomRow {
+    gap: 16px;
   }
 }
