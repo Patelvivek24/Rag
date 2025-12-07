@@ -43,7 +43,7 @@ const CTASection = () => {
               AI-powered automation tools to streamline your business operations.
             </p>
             <div className={styles.ctaActions}>
-              <a href="#contact" className={styles.primaryButton}>
+              <a href="/contact" className={styles.primaryButton}>
                 <span>Contact For Demo</span>
                 <div className={styles.buttonIcon}>
                   <Icon icon="mdi:arrow-right" width="20" height="20" />

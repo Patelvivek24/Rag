@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
 import styles from "./description-overview.module.scss";
@@ -154,8 +155,7 @@ const DescriptionOverview = () => {
               </motion.div>
 
               {!isSubmitted ? (
-                <motion.form 
-                  onSubmit={handleSubmit} 
+                <motion.div 
                   className={styles.wishlistForm}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -163,49 +163,25 @@ const DescriptionOverview = () => {
                   transition={{ duration: 0.5, delay: 0.9 }}
                 >
                   <motion.div 
-                    className={`${styles.inputGroup} ${isFocused ? styles.focused : ""}`}
-                    whileFocus={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    className={styles.inputGroup}
                   >
-                    <motion.input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      onFocus={() => setIsFocused(true)}
-                      onBlur={() => setIsFocused(false)}
-                      placeholder="Enter your email address"
-                      className={styles.emailInput}
-                      required
-                      disabled={isLoading}
-                      whileFocus={{ scale: 1.02 }}
-                    />
-                    <motion.button
-                      type="submit"
-                      className={`${styles.submitButton} ${email ? styles.active : ""}`}
-                      disabled={isLoading || !email}
-                      whileHover={{ scale: email ? 1.05 : 1 }}
-                      whileTap={{ scale: email ? 0.95 : 1 }}
-                      transition={{ type: "spring", stiffness: 400 }}
+                    <Link
+                      href="/contact"
+                      className={styles.submitButton}
                     >
-                      {isLoading ? (
-                        <div className={styles.loadingSpinner} />
-                      ) : (
-                        <>
-                          <span>Join Waitlist</span>
-                          <motion.div 
-                            className={styles.buttonArrow}
-                            animate={{ x: [0, 5, 0] }}
-                            transition={{ 
-                              duration: 1.5,
-                              repeat: Infinity,
-                              repeatDelay: 1
-                            }}
-                          >
-                            <Icon icon="mdi:arrow-right" width="16" height="16" />
-                          </motion.div>
-                        </>
-                      )}
-                    </motion.button>
+                      <span>Join Waitlist</span>
+                      <motion.div 
+                        className={styles.buttonArrow}
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ 
+                          duration: 1.5,
+                          repeat: Infinity,
+                          repeatDelay: 1
+                        }}
+                      >
+                        <Icon icon="mdi:arrow-right" width="16" height="16" />
+                      </motion.div>
+                    </Link>
                   </motion.div>
                   <motion.div 
                     className={styles.wishlistNote}
@@ -219,7 +195,7 @@ const DescriptionOverview = () => {
                     </div>
                     <span>We respect your privacy. No spam, ever.</span>
                   </motion.div>
-                </motion.form>
+                </motion.div>
               ) : (
                 <motion.div 
                   className={styles.successMessage}

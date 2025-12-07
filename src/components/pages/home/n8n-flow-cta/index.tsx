@@ -25,7 +25,7 @@ const N8nFlowCTA = () => {
 
           {/* CTA Button */}
           <div className={styles.ctaButtons}>
-            <a href="#contact" className={styles.primaryButton}>
+            <a href="/contact" className={styles.primaryButton}>
               <span>Start Building Workflows</span>
               <div className={styles.buttonIcon}>
                 <Icon icon="mdi:chevron-right" width="16" height="16" />

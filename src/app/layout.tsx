@@ -4,6 +4,7 @@ import "@/styles/global.scss";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ScrollToTop from "@/components/ui/ScrollToTop";
+import CookiePolicy from "@/components/ui/CookiePolicy";
 
 
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ScrollToTop />
+        <CookiePolicy />
         <Header />
         <main>{children}</main>
         <Footer />
